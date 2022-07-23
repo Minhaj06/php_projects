@@ -1,7 +1,4 @@
-<?php include_once "includes/head.php" ?>
-
-
-<?php
+<?php include_once "includes/head.php";
 
 include_once "dbConnection.php";
 
@@ -13,9 +10,9 @@ if (isset($_POST['register'])) {
 
 
     if (empty($name) || empty($email) || empty($password)) {
-        echo "<h2>Input could not be empty</h2>";
-
-        // header("Location: register.php");
+        $_SESSION['message'] = "Input could not be empty!";
+        header("Location: register.php");
+        exit(0);
     } else {
 
         $sql = "INSERT INTO users (name,email,password) VALUES ('$name', '$email', '$password')";
@@ -25,9 +22,11 @@ if (isset($_POST['register'])) {
         if ($query) {
             $_SESSION['message'] = "Register successfully";
             header("Location: index.php");
+            exit(0);
         } else {
             $_SESSION['message'] = "Register successfully";
             header("Location: register.php");
+            exit(0);
         }
     }
 }
@@ -37,6 +36,8 @@ if (isset($_POST['register'])) {
 
 
 <div class="container mt-5">
+
+    <?php include "includes/message.php" ?>
 
     <div class="card">
         <div class="card-header">

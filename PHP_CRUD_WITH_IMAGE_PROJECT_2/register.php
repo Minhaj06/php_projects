@@ -10,9 +10,8 @@ if (isset($_POST['register'])) {
 
 
     if (empty($name) || empty($email) || empty($password)) {
-        echo "<h2>Input could not be empty</h2>";
-
-        // header("Location: register.php");
+        $_SESSION['message'] = "Input could not be empty!";
+        header("Location: register.php");
     } else {
 
         $sql = "INSERT INTO `users_with_image` (name,email,password) VALUES ('$name', '$email', '$password')";
@@ -34,6 +33,7 @@ if (isset($_POST['register'])) {
 
 
 <div class="container mt-5">
+    <?php include "includes/message.php" ?>
 
     <div class="card">
         <div class="card-header">

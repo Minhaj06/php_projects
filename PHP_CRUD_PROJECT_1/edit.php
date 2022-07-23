@@ -5,6 +5,8 @@ include_once "dbConnection.php";
 
 $id = $_GET['id'];
 
+echo "<script>alert($id)</script>";
+
 $sql = "SELECT * FROM `users` WHERE id = '$id' ";
 
 $query = mysqli_query($conn, $sql);
@@ -19,9 +21,9 @@ if (isset($_POST['update_btn'])) {
 
 
     if (empty($name) || empty($email) || empty($password)) {
-        echo "<h2>Input could not be empty</h2>";
-
-        // header("Location: register.php");
+        $_SESSION['message'] = "Input could not be empty!";
+        header("Location: edit.php");
+        exit(0);
     } else {
         $sql = "UPDATE `users` SET name='$name',email='$email',password='$password' WHERE id='$id'";
 
@@ -30,9 +32,11 @@ if (isset($_POST['update_btn'])) {
         if ($query) {
             $_SESSION['message'] = "User updated successfully";
             header("Location: index.php");
+            exit(0);
         } else {
             $_SESSION['message'] = "User not updated";
             header("Location: edit.php");
+            exit(0);
         }
     }
 }
@@ -40,17 +44,8 @@ if (isset($_POST['update_btn'])) {
 
 ?>
 
-
-
-
-
-
-
-
-
-
 <div class="container mt-5">
-
+    <?php include "includes/message.php" ?>
     <div class="card">
         <div class="card-header">
             <h3>Update User</h3>
