@@ -9,11 +9,6 @@ $query = mysqli_query($conn, $sql);
 
 ?>
 
-
-
-
-
-
 <div class="container my-5">
 
     <?php include "includes/message.php" ?>
@@ -32,7 +27,7 @@ $query = mysqli_query($conn, $sql);
                             <th class="align-middle">ID</th>
                             <th class="align-middle">Image</th>
                             <th class="align-middle">Name</th>
-                            <th class="align-middle">Phone</th>
+                            <th class="align-middle">Email</th>
                             <th class="align-middle">Password</th>
                             <th class="align-middle">Confirm Password</th>
                             <th class="align-middle">Actions</th>
@@ -51,9 +46,9 @@ $query = mysqli_query($conn, $sql);
 
                         <tr>
                             <td><?= $id ?></td>
-                            <td><img src="images/<?= $row['image'] ?>" alt="user_image" width="80" height="60"></td>
+                            <td><img src="upload/<?= $row['image'] ?>" alt="user_image" width="80" height="60"></td>
                             <td><?= $row['name'] ?></td>
-                            <td><?= $row['phone'] ?></td>
+                            <td><?= $row['email'] ?></td>
                             <td><?= $row['password'] ?></td>
                             <td><?= $row['c_password'] ?></td>
                             <td>
