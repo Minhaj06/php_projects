@@ -1,4 +1,4 @@
-<footer class="bg-info text-center text-lg-start position-fixed w-100 bottom-0">
+<footer class="bg-info text-center text-lg-start mt-5">
     <!-- Copyright -->
     <div class="text-center p-3">
         © 2020 Copyright:

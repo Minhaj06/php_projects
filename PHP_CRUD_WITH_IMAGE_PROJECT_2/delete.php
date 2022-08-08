@@ -2,13 +2,15 @@
 include_once 'dbConnection.php';
 
 $id = $_GET['id'];
-
-
 $sql = "DELETE FROM `users_with_image` WHERE id='$id'";
 
-$query = mysqli_query($conn, $sql);
+$prev_image = mysqli_fetch_assoc(mysqli_query($conn, "SELECT image from `users_with_image` WHERE id = '$id'"))['image'];
 
-if ($query) {
+
+if (mysqli_query($conn, $sql)) {
+
+    unlink('upload/' . $prev_image);
+
     $_SESSION['message'] = "User deleted successfully";
     header("Location: index.php");
 } else {

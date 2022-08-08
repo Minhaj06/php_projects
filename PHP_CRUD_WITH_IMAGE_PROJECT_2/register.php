@@ -12,7 +12,7 @@ if (isset($_POST['register_btn'])) {
 
 
     if (empty($name) || empty($email) || empty($image) || empty($password) || empty($c_password)) {
-        $_SESSION['message'] = $rename_image;
+        $_SESSION['message'] = "Input could not be empty!";
         header("Location: register.php");
         exit(0);
     } else {
@@ -37,7 +37,7 @@ if (isset($_POST['register_btn'])) {
                 $rename_image = date("d-m-Y") . "-" . time() . "." . $image_check;
                 $image_destinition = 'upload/' . $rename_image;
 
-                $sql = "INSERT INTO `users_with_image` (name, email, image, password, c_password) VALUES ('$name', '$email', '$rename_image', '$password', '$c_password')";
+                $sql = "INSERT INTO `users_with_image` (name, email, image, password) VALUES ('$name', '$email', '$rename_image', '$password')";
 
                 $query = mysqli_query($conn, $sql);
 
@@ -66,8 +66,12 @@ if (isset($_POST['register_btn'])) {
     <?php include "includes/message.php" ?>
 
     <div class="card">
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-between align-items-center">
             <h3>Register Form</h3>
+            <a href="index.php" class="btn btn-info">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back Home
+            </a>
         </div>
         <div class="card-body">
             <form action="<?php htmlentities($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data">
@@ -83,7 +87,7 @@ if (isset($_POST['register_btn'])) {
 
                 <div class="form-group mb-3">
                     <label for="image" class="form-label">Image</label>
-                    <input class="form-control" type="file" name="image" placeholder="Enter your email" required>
+                    <input class="form-control" type="file" name="image" required>
                 </div>
 
                 <div class="form-group mb-3">

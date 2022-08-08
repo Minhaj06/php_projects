@@ -29,7 +29,6 @@ $query = mysqli_query($conn, $sql);
                             <th class="align-middle">Name</th>
                             <th class="align-middle">Email</th>
                             <th class="align-middle">Password</th>
-                            <th class="align-middle">Confirm Password</th>
                             <th class="align-middle">Actions</th>
                         </tr>
                     </thead>
@@ -50,8 +49,10 @@ $query = mysqli_query($conn, $sql);
                             <td><?= $row['name'] ?></td>
                             <td><?= $row['email'] ?></td>
                             <td><?= $row['password'] ?></td>
-                            <td><?= $row['c_password'] ?></td>
                             <td>
+                                <a class="text-success px-2 py-1" href="view.php?id=<?= $row['id'] ?>">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
                                 <a class="text-warning px-2 py-1" href="edit.php?id=<?= $row['id'] ?>">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
